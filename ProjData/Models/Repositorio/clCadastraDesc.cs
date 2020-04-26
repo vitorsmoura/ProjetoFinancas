@@ -25,7 +25,7 @@ namespace ProjData.Models.Repositorio
                 my.Parameters.Add("@necessidade", MySqlDbType.VarChar).Value = descricao.Necessidade;
                 my.Parameters.Add("@tipo", MySqlDbType.VarChar).Value = descricao.Tipo;
                 my.Parameters.Add("@formapgto", MySqlDbType.VarChar).Value = descricao.Forma_pgto;
-                my.Parameters.Add("@preco", MySqlDbType.VarChar).Value = descricao.Preco;
+                my.Parameters.Add("@preco", MySqlDbType.Decimal).Value = descricao.Preco;
 
                 my.ExecuteNonQuery();
                 conexao.MyDesconectarBD();
