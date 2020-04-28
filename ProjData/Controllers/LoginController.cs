@@ -39,7 +39,7 @@ namespace ProjData.Controllers
 
             if (cl.Login1.Loguin == login.Loguin && cl.Login1.Senha == login.Senha)
                 {
-                    Session["StatusLogin"] = "CLI";
+                    Session["StatusLogin"] = "LOGADO";
                     Session["ClienteLogado"] = cl;
 
                     return RedirectToAction("Index", "Home");

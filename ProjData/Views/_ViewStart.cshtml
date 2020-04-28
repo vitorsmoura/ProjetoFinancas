@@ -1,3 +1,11 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["StatusLogin"] == "LOGADO")
+    {
+        Layout = "~/Views/Shared/_LayoutLogado.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
 }

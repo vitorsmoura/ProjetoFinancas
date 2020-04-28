@@ -16,41 +16,49 @@ namespace ProjData.Controllers
         
         public ActionResult Index()
         {
-            Usuario user = new Usuario();
-            clBuscaDesc busca = new clBuscaDesc();
+            if(Session["StatusLogin"] == "LOGADO"){ 
+                Usuario user = new Usuario();
+                clBuscaDesc busca = new clBuscaDesc();
 
 
-            if (Session["StatusLogin"] == "CLI")
-            {
-                UserLogado cl = Session["ClienteLogado"] as UserLogado;
+                if (Session["StatusLogin"] == "CLI")
+                {
+                    UserLogado cl = Session["ClienteLogado"] as UserLogado;
 
-                Session["NomeUser"] = cl.Usuario.Nomeuser;
-                Session["SobrenomeUser"] = cl.Usuario.Sobrenomeuser;
+                    Session["NomeUser"] = cl.Usuario.Nomeuser;
+                    Session["SobrenomeUser"] = cl.Usuario.Sobrenomeuser;
 
+                }
+
+                if(Session["ClienteLogado"] == null)
+                {
+                    return RedirectToAction("Index", "Login");
+
+                }
+
+                UserLogado us = Session["ClienteLogado"] as UserLogado;
+                var listDesc = busca.buscaDesc(int.Parse(us.Usuario.Coduser));
+
+                double total = 0;
+                for (int i = 0; i < listDesc.Count; i++)
+                {
+                    total = total + listDesc[i].Preco;
+                    dataAtt = listDesc[i].Datac;
+                }
+
+                Session["dataAtt"] = dataAtt;
+                Session["TotalGasto"] = total;
+
+
+                return View(listDesc);
             }
-
-            if(Session["ClienteLogado"] == null)
+            else
             {
                 return RedirectToAction("Index", "Login");
-
             }
-
-            UserLogado us = Session["ClienteLogado"] as UserLogado;
-            var listDesc = busca.buscaDesc(int.Parse(us.Usuario.Coduser));
-
-            double total = 0;
-            for (int i = 0; i < listDesc.Count; i++)
-            {
-                total = total + listDesc[i].Preco;
-                dataAtt = listDesc[i].Datac;
-            }
-
-            Session["dataAtt"] = dataAtt;
-            Session["TotalGasto"] = total;
-
-
-            return View(listDesc);
         }
+
+
 
         clCadastraDesc clCadDesc = new clCadastraDesc();
 
