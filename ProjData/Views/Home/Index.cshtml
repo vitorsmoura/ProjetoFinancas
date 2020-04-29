@@ -4,6 +4,9 @@
 
     double gasto = (double)Session["TotalGasto"];
     string dataAtt = (string)Session["dataAtt"];
+    string mesAtual = (string)Session["MesAtual"];
+    int anoAtual = (int)Session["anoAtual"];
+    double totalMesAtual = (double)Session["totalMesAtual"];
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 @Styles.Render("~/Content/CardsStatus.css")
@@ -52,6 +55,18 @@
                 </div>
             </div>
         </div>*@
+
+    <script type="text/javascript">
+        $(function () {
+
+            var dtHoje = new Date();
+            
+            var @ViewBag.MesAtual = dtHoje.getMonth();
+
+        })
+
+
+    </script>
     <main class="page-content">
         <div class="box-conteudo">
                 <div class="row">
@@ -66,16 +81,16 @@
                     <div class="col-md-3">
                         <div class="card-counter danger">
                             <i class="fa fa-ticket"></i>
-                            <span class="count-numbers"></span>
-                            <span class="count-name">Instances</span>
+                            <span class="count-numbers">R$ @totalMesAtual</span>
+                            <span class="count-name">@mesAtual (@anoAtual)</span>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="card-counter success">
                             <i class="fa fa-database"></i>
-                            <span class="count-numbers">6875</span>
-                            <span class="count-name">Data</span>
+                            <span class="count-numbers">R$ </span>
+                            <span class="count-name">Mês anterior</span>
                         </div>
                     </div>
 

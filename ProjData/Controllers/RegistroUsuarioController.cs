@@ -13,6 +13,8 @@ namespace ProjData.Controllers
         // GET: RegistroUsuario
         public ActionResult Index()
         {
+
+
             return View();
         }
 
@@ -23,6 +25,7 @@ namespace ProjData.Controllers
 
             if (cadastraUser.insertCadastro(usuario) == false)
             {
+
 
                 //TempData["error"] = "true";
                 // TempData["StatusCadastro"] = "ERRO";
